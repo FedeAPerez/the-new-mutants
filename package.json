@@ -1,0 +1,20 @@
+{
+  "name": "the-new-mutants",
+  "version": "1.0.0",
+  "description": "mutants challenge for meli",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FedeAPerez/the-new-mutants.git"
+  },
+  "author": "federico pérez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FedeAPerez/the-new-mutants/issues"
+  },
+  "homepage": "https://github.com/FedeAPerez/the-new-mutants#readme"
+}
