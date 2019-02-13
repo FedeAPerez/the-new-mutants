@@ -48,6 +48,7 @@ Mutant.prototype.isMutant = function(dna) {
         });
 
         // genero una matríx inversa
+        // AAGG ACTT ACGT AGCT
     }
 };
 
