@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "start-dev": "nodemon --inspect=8000 server.js",
     "test": "npm run test"
   },
   "repository": {
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/FedeAPerez/the-new-mutants/issues"
   },
-  "homepage": "https://github.com/FedeAPerez/the-new-mutants#readme"
+  "homepage": "https://github.com/FedeAPerez/the-new-mutants#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "supertest": "^3.4.2"
+  }
 }
