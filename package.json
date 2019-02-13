@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start-dev": "nodemon --inspect=8000 server.js",
+    "start-dev": "SET PORT=8000 && nodemon --inspect=8000 server.js",
     "test": "npm run test"
   },
   "repository": {
@@ -23,6 +23,8 @@
     "supertest": "^3.4.2"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4"
   }
 }
