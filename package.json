@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "SET PORT=8000 && nodemon --inspect=8000 server.js",
-    "test": "npm run test"
+    "test": "nyc --all --reporter=html mocha --recursive --exit"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/FedeAPerez/the-new-mutants#readme",
   "devDependencies": {
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.10",
+    "nyc": "^13.2.0",
     "supertest": "^3.4.2"
   },
   "dependencies": {
