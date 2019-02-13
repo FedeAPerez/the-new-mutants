@@ -28,15 +28,26 @@ Mutant.prototype.isMutant = function(dna) {
             if(String(element).indexOf(words[0]) != -1) {
                 this.dnaFounded();
                 return;
-                console.log("found "+ words[0]);
 
                 if(string(element).indexOf(words[1]) != -1 ) {
                     this.dnaFounded();
                     return;
+
+                    if(string(element).indexOf(words[2]) != -1 ) {
+                        this.dnaFounded();
+                        return;
+
+                        if(string(element).indexOf(words[3]) != -1 ) {
+                            this.dnaFounded();
+                            return;
+                        }
+                    }
                 }
-                
+
             }
         });
+
+        // genero una matríx inversa
     }
 };
 
