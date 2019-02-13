@@ -1,6 +1,6 @@
 module.exports = {
-    isMutant: function(req, res, next) {
-        res.status(403).send({
+    get: function(req, res, next) {
+        res.status(200).send({
             'hola': 'bebi'
         });
         next();
