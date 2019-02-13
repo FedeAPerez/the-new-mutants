@@ -1,8 +1,10 @@
+const Mutant = require('../models/mutant');
+
 module.exports = {
-    isMutant: function(req, res, next) {
-        res.status(403).send({
-            'hola': 'bebi'
-        });
+    isMutant: async function(req, res, next) {
+        var mut = new Mutant();
+        mut.isMutant(req.body.dna);
+        res.status(mut.status).send();
         next();
     }
 };
