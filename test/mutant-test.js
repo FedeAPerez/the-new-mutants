@@ -11,7 +11,6 @@ describe('Mutant', function() {
             .send({
                 dna: ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
             })
-            .expect('Content-Type', /json/)
             .expect(200)
             .end((err) => {
                     if (err) return done(err);
@@ -26,7 +25,6 @@ describe('Mutant', function() {
             .send({
                 dna: ["ATCG","TACG","TCAG","TCGA"]
             })
-            .expect('Content-Type', /json/)
             .expect(200)
             .end((err) => {
                     if (err) return done(err);
@@ -41,7 +39,34 @@ describe('Mutant', function() {
             .send({
                 dna: ["ATCG","TACG","TCAG","TGAC"]
             })
-            .expect('Content-Type', /json/)
+            .expect(403)
+            .end((err) => {
+                    if (err) return done(err);
+                    done();
+                });
+        });
+
+        it('403 - 8*8', function(done) {
+            request(app)
+            .post('/mutant')
+            .set('Accept', 'application/json')
+            .send({
+                dna: ["ATCGATCG","TACGTACG","TCAGTCAG","TGACTGAC", "ATCGATCG","TACGTACG","TCAGTCAG","TGACTGAC"]
+            })
+            .expect(403)
+            .end((err) => {
+                    if (err) return done(err);
+                    done();
+                });
+        });
+
+        it('403 - borde mínimo inferior', function(done) {
+            request(app)
+            .post('/mutant')
+            .set('Accept', 'application/json')
+            .send({
+                dna: ["ATC","TAC","TCA","TGA"]
+            })
             .expect(403)
             .end((err) => {
                     if (err) return done(err);
