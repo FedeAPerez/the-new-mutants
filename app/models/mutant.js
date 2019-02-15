@@ -7,6 +7,7 @@ class Mutant {
 Mutant.prototype.dnaFounded = function() {
     this.status = 200;
 }
+const hasWord = (element, word) => element.indexOf(word) != -1;
 
 Mutant.prototype.isMutant = function(dna) {
     let status = 403;
@@ -25,19 +26,19 @@ Mutant.prototype.isMutant = function(dna) {
         // first ap Big O : n al 2
         //busqueda horizontal
         dna.forEach(element => {
-            if(String(element).indexOf(words[0]) != -1) {
+            if(hasWord(element, words[0])) {
                 this.dnaFounded();
                 return;
 
-                if(string(element).indexOf(words[1]) != -1 ) {
+                if(hasWord(element, words[1])) {
                     this.dnaFounded();
                     return;
 
-                    if(string(element).indexOf(words[2]) != -1 ) {
+                    if(hasWord(element, words[2])) {
                         this.dnaFounded();
                         return;
 
-                        if(string(element).indexOf(words[3]) != -1 ) {
+                        if(hasWord(element, words[3])) {
                             this.dnaFounded();
                             return;
                         }

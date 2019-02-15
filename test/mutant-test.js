@@ -11,7 +11,6 @@ describe('Mutant', function() {
             .send({
                 dna: ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
             })
-            .expect('Content-Type', /json/)
             .expect(200)
             .end((err) => {
                     if (err) return done(err);
@@ -26,7 +25,6 @@ describe('Mutant', function() {
             .send({
                 dna: ["ATCG","TACG","TCAG","TCGA"]
             })
-            .expect('Content-Type', /json/)
             .expect(200)
             .end((err) => {
                     if (err) return done(err);
@@ -41,7 +39,6 @@ describe('Mutant', function() {
             .send({
                 dna: ["ATCG","TACG","TCAG","TGAC"]
             })
-            .expect('Content-Type', /json/)
             .expect(403)
             .end((err) => {
                     if (err) return done(err);
