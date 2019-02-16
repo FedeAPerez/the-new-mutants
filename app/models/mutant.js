@@ -32,15 +32,15 @@ Mutant.prototype.isMutant = function() {
             if(hasWord(element, words[0])) {
                 this.dnaFounded();
                 return;
-
+            } else {
                 if(hasWord(element, words[1])) {
                     this.dnaFounded();
                     return;
-
+                } else {
                     if(hasWord(element, words[2])) {
                         this.dnaFounded();
                         return;
-
+                    } else {
                         if(hasWord(element, words[3])) {
                             this.dnaFounded();
                             return;
