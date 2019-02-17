@@ -1,5 +1,7 @@
 // Librerías de 3ros
 const request   = require('supertest');
+const firebase  = require('../config/firebase');
+firebase.init();
 const app       = require('../config/app');
 
 describe('Home', function() {

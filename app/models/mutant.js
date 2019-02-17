@@ -1,3 +1,7 @@
+const implementation = require('./i-is-mutant-trivial');
+const firebase = require('firebase-admin');
+const database = firebase.database();
+
 class Mutant {
     constructor(dna) {
         this.status = 403;
@@ -8,53 +12,41 @@ class Mutant {
 Mutant.prototype.dnaFounded = function() {
     this.status = 200;
 }
-const hasWord = (element, word) => element.indexOf(word) != -1;
 
 Mutant.prototype.save = function() {
+    let ref = database.ref('/adns');
+    ref.push({ dna: this.dna, status: this.status});
 };
 
-Mutant.prototype.isMutant = function() {
-    let words = [
-        'CCCC',
-        'GGGG',
-        'TTTT',
-        'AAAA'
-    ];
-
-    // descarto las palabras sin evaluar si la longitud es menor a 4
-    if(this.dna.length < 4) {
-        return;
-    } else {
-        // potencialmente verdadero
-        // first ap Big O : n al 2
-        //busqueda horizontal
-        dna.forEach(element => {
-            if(hasWord(element, words[0])) {
-                this.dnaFounded();
-                return;
+Mutant.prototype.aggregate = function() {
+    try {
+        let refAgg = database.ref('/adns-agg');
+        refAgg.once("value", (data) => {
+            if(data.val()) {
+                let mutantCount = Number(data.val().mutant_count) + (this.status == 200 ? 1 : 0);
+                let humanCount = Number(data.val().human_count) + (this.status == 403 ? 1 : 0);
+                console.log(`Conteo Mutantes: ${mutantCount} Humanos: ${humanCount}`);
+                refAgg.set({
+                    'mutant_count' : mutantCount,
+                    'human_count': humanCount
+                });
             } else {
-                if(hasWord(element, words[1])) {
-                    this.dnaFounded();
-                    return;
-                } else {
-                    if(hasWord(element, words[2])) {
-                        this.dnaFounded();
-                        return;
-                    } else {
-                        if(hasWord(element, words[3])) {
-                            this.dnaFounded();
-                            return;
-                        }
-                    }
-                }
-
+                refAgg.set({
+                    'mutant_count' : this.status == 200 ? 1 : 0,
+                    'human_count': this.status == 403 ? 1 : 0
+                });
             }
-            
         });
-
-        // genero una matríx inversa
-        // AAGG ACTT ACGT AGCT
+    } catch(err) {
+        // handle error on aggregate
+        console.error("falla de agregación");
+        console.error(err);
+    } finally {
     }
+}
+
+Mutant.prototype.isMutant = function() {
+    this.status = implementation.isMutant(this.dna) ? 200 : 403;
 };
 
 module.exports = Mutant;
