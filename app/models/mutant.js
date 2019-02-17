@@ -9,10 +9,6 @@ class Mutant {
     }
 };
 
-Mutant.prototype.dnaFounded = function() {
-    this.status = 200;
-}
-
 Mutant.prototype.save = function() {
     let ref = database.ref('/adns');
     ref.push({ dna: this.dna, status: this.status});
@@ -25,7 +21,6 @@ Mutant.prototype.aggregate = function() {
             if(data.val()) {
                 let mutantCount = Number(data.val().mutant_count) + (this.status == 200 ? 1 : 0);
                 let humanCount = Number(data.val().human_count) + (this.status == 403 ? 1 : 0);
-                console.log(`Conteo Mutantes: ${mutantCount} Humanos: ${humanCount}`);
                 refAgg.set({
                     'mutant_count' : mutantCount,
                     'human_count': humanCount
@@ -43,7 +38,7 @@ Mutant.prototype.aggregate = function() {
         console.error(err);
     } finally {
     }
-}
+};
 
 Mutant.prototype.isMutant = function() {
     this.status = implementation.isMutant(this.dna) ? 200 : 403;
