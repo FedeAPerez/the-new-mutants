@@ -21,9 +21,7 @@ Stat.prototype.getStats = function(statOb = null) {
                 resolve();
             });
         } catch(err) {
-            // handle error on aggregate
-            console.error("falla al leer agregación");
-            console.log(err);
+            // error handler de lectura de agg
             reject();
         }
     });
@@ -35,16 +33,8 @@ Stat.prototype.getAverage = function() {
         this.ratio = this.count_mutant_dna / this.count_human_dna;
         this.ratio = this.ratio.toFixed(3);
     } catch(err) {
-        console.error("Error al calcular el ratio");
+        // error handler de calculo de ratio
     }
-}
-
-Stat.prototype.getJson = function() {
-    return {
-        'count_mutant_dna': this.count_mutant_dna,
-        'count_human_dna': this.count_human_dna,
-        'ratio': this.ratio
-    };
 }
 
 module.exports = Stat;

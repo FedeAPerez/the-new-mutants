@@ -33,9 +33,7 @@ Mutant.prototype.aggregate = function() {
             }
         });
     } catch(err) {
-        // handle error on aggregate
-        console.error("falla de agregación");
-        console.log(err);
+        // Error handler de agg op
     }
 };
 

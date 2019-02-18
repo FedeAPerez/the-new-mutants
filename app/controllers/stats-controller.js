@@ -5,7 +5,7 @@ module.exports = {
         var stat = new Stat();
         await stat.getStats(); // búsqueda en bd, mock, etc.
         stat.getAverage();
-        res.status(200).send(stat.getJson());
+        res.status(200).send(stat);
         next();
     }
 };
