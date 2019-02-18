@@ -20,6 +20,8 @@ const contarOcurrenciasEnCadena = str => {
     return count;
 };
 
+const tieneSecuenciasMutantes = numSec => numSec > 1;
+
 module.exports = {
     isMutant : function (dnaStr) {    
         let cantidadCadenas = dnaStr.length;
@@ -33,7 +35,7 @@ module.exports = {
             for(index; index < cantidadCadenas; index++) {
                 secuenciasEncontradas += contarOcurrenciasEnCadena(dnaStr[index]);
                 // opt
-                if(secuenciasEncontradas > 1) {
+                if(tieneSecuenciasMutantes(secuenciasEncontradas)) {
                     return true;
                 }
             }
@@ -46,7 +48,23 @@ module.exports = {
                 }
                 secuenciasEncontradas += contarOcurrenciasEnCadena(cadenaVertical);
                     // opt
-                if(secuenciasEncontradas > 1) {
+                if(tieneSecuenciasMutantes(secuenciasEncontradas)) {
+                    return true;
+                }
+            }
+            // me quedo con los de apartir de 4
+            for( var k = 3 ; k < (cantidadCadenas * 2 - 4); k++ ) {
+                let cadenaDiagonal = ''
+                for( var j = 0 ; j <= cantidadCadenas ; j++ ) {
+                    var index = k - j;
+                    if( index >= 0 && index < cantidadCadenas && j < cantidadCadenas ) {
+                        cadenaDiagonal += dnaStr[index][j];
+                    }   
+                }
+                console.log(cadenaDiagonal);
+                secuenciasEncontradas += contarOcurrenciasEnCadena(cadenaDiagonal);
+
+                if(tieneSecuenciasMutantes(secuenciasEncontradas)) {
                     return true;
                 }
             }
