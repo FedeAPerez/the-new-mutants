@@ -25,3 +25,10 @@ Se puede revisar pantallas de coverage en el archivo ./coverage/index.html
 
 ## Para la resolución de Stats
 - Se optó por aggregates para la información en stats, esto hace ligeramente más costosa la la carga de nuevos adns pero para la consulta a /stats se revisa únicamente un documento. En caso de no realizar esta agregación, se deberían recorrer N registros de la tabla para realizar la consulta.
+
+
+# Tecnologías utilizadas
+- Almacenamiento documental en Firebase
+- Tests mediante Mocha, supertest y nyc para reportes.
+- NodeJS, express como facilitador de routing.
+- Heroku como PaaS
