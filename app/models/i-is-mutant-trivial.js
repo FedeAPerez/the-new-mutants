@@ -34,7 +34,7 @@ module.exports = {
         } else {
 
             // busqueda horizontal en cadenas completas
-            for(let i; i < cantidadCadenas; i++) {
+            for(var i = 0; i < cantidadCadenas; i++) {
                 secuenciasEncontradas += contarOcurrenciasEnCadena(dnaStr[i]);
                 // opt
                 if(tieneSecuenciasMutantes(secuenciasEncontradas)) {
