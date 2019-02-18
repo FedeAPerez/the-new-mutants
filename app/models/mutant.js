@@ -35,8 +35,7 @@ Mutant.prototype.aggregate = function() {
     } catch(err) {
         // handle error on aggregate
         console.error("falla de agregación");
-        console.error(err);
-    } finally {
+        console.log(err);
     }
 };
 

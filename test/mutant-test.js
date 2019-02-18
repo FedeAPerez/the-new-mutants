@@ -11,7 +11,14 @@ describe('Mutant', function() {
             .post('/mutant')
             .set('Accept', 'application/json')
             .send({
-                dna: ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
+                dna: [
+                    "ATGCGA",
+                    "CAGTGC",
+                    "TTATGT",
+                    "AGAAGG",
+                    "CCCCTA",
+                    "TCACTG"
+                ]
             })
             .expect(200)
             .end((err) => {
@@ -25,7 +32,12 @@ describe('Mutant', function() {
             .post('/mutant')
             .set('Accept', 'application/json')
             .send({
-                dna: ["ATCA","TACA","TCAA","TCGA"]
+                dna: [
+                    "ATCA",
+                    "TACA",
+                    "TCAA",
+                    "TCGA"
+                ]
             })
             .expect(200)
             .end((err) => {
@@ -34,13 +46,13 @@ describe('Mutant', function() {
                 });
         });
 
-        it('403 - solamente una cadena TTTT', function(done) {
+        it('403 - solamente una cadena horizontal', function(done) {
             request(app)
             .post('/mutant')
             .set('Accept', 'application/json')
             .send({
                 dna: [
-                    "CCCC",
+                    "GGGG",
                     "ATCG",
                     "ATCG",
                     "CTGA"
@@ -53,12 +65,36 @@ describe('Mutant', function() {
                 });
         });
 
-        it('403 - sin cadena de secuencia repetida', function(done) {
+        it('200 - una cadena CCCC horizontal y una TTTT vertical', function(done) {
             request(app)
             .post('/mutant')
             .set('Accept', 'application/json')
             .send({
-                dna: ["ATCG","TACG","TCAG","TGAC"]
+                dna: [
+                    "CCCCC",
+                    "ATCGT",
+                    "ATCGT",
+                    "CTGAA",
+                    "CTGAC"
+                ]
+            })
+            .expect(200)
+            .end((err) => {
+                    if (err) return done(err);
+                    done();
+                });
+        });
+        
+        it('403 - solamente una cadena diagonal', function(done) {
+            request(app)
+            .post('/mutant')
+            .set('Accept', 'application/json')
+            .send({
+                dna: [
+                    "ATCG",
+                    "TACG",
+                    "TCAG",
+                    "TGAC"]
             })
             .expect(403)
             .end((err) => {
@@ -72,7 +108,15 @@ describe('Mutant', function() {
             .post('/mutant')
             .set('Accept', 'application/json')
             .send({
-                dna: ["ATCGATCG","TACGTACG","TCAGTCAG","TGACTGAC", "ATCGATCG","TACGTACG","TCAGTCAG","TGACTGAC"]
+                dna: [
+                    "ATCGATCG",
+                    "TACGTACG",
+                    "TCAGTCAG",
+                    "TGACTGAC", 
+                    "ATCGATCG",
+                    "TACGTACG",
+                    "TCAGTCAG",
+                    "TGACTGAC"]
             })
             .expect(403)
             .end((err) => {
@@ -86,7 +130,11 @@ describe('Mutant', function() {
             .post('/mutant')
             .set('Accept', 'application/json')
             .send({
-                dna: ["ATC","TAC","TCA"]
+                dna: [
+                    "ATC",
+                    "TAC",
+                    "TCA"
+                ]
             })
             .expect(403)
             .end((err) => {

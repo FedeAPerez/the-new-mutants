@@ -17,7 +17,7 @@ module.exports = {
         } else {
             var index = 0;
             // busqueda horizontal O(n*2)
-            for(index; index < length; index ++) {
+            for(index; index < length; index++) {
                 if(contains(dnaStr[index], words[0]))
                     ammountFounded++;
                 if(contains(dnaStr[index], words[1]))
@@ -28,7 +28,27 @@ module.exports = {
                     ammountFounded++;
                 // opt
                 if(ammountFounded > 1) {
-                    break;
+                    return true;
+                }
+            }
+
+            // búsqueda vertical
+            for(var i = 0; i < length; i++) {
+                let verticalWord = '';
+                for(var j = 0; j < length; j++) {
+                    verticalWord += dnaStr[j][i];
+                }
+                if(contains(verticalWord, words[0]))
+                    ammountFounded++;
+                if(contains(verticalWord, words[1]))
+                    ammountFounded++;
+                if(contains(verticalWord, words[2]))
+                    ammountFounded++;
+                if(contains(verticalWord, words[3]))
+                    ammountFounded++;
+                    // opt
+                if(ammountFounded > 1) {
+                    return true;
                 }
             }
             
